@@ -1,0 +1,21 @@
+[
+    {
+        "name": "Soft Skills",
+        "image": "image1.png",
+        "description": "We learnt soft skills from Pratishtha Shyam Ma'am, she taught us how to speak with people and give speaches, which gave us a head start at the begining of our colledge.",
+        "icon":"fa-microphone"
+    },
+    {
+        "name": "Python Programming Language",
+        "image": "image2.png",
+        "description": "Python being one of the best programming languages to start from, was taught to us by Ritu Ma'am.",
+        "icon":"fa-code"
+    }
+    ,
+    {
+        "name": "C++ Programming Language",
+        "image": "image2.png",
+        "description": "C++ is one of the most important",
+        "icon":"fa-code"
+    }
+]
