@@ -2,22 +2,134 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=0.1, initial-scale=1.0">
-    <title>Personal Development tracker</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Insert Task</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <nav>
-        What&nbsp;<b id="sft">SFT</b>&nbsp;taught us?
+        <div class="navbar-logo"><i class="fa fa-clipboard"></i>Insert </div>
+        <div class="nav-right">
+            <button class="theme-toggle">Toggle Theme</button>
+        </div>
     </nav>
-    <div id="maindiv">
-    </div>
-    <script src="./index.js"></script>
-</body>
 
+    <div class="main-layout">
+        <aside class="sidebar">
+            <button id="new_task" class="sidebar-btn"><i class="fa fa-plus"></i> New activities</button>
+            <button id="all_task" class="sidebar-btn"><i class="fa fa-list"></i> All activities</button>
+            <button class="sidebar-btn"><i class="fa fa-cog"></i> Settings</button>
+        </aside>
+        <main id="root" class="main"></main>
+    </div>
+
+    <div id="toast">Task Added!</div>
+    <script>
+    var formComponent =
+        `<div class="tracker-form-container">
+            <h2>Insert New Activity</h2>
+            <form class="tracker-form">
+                <label for="title">Title</label>
+                <input type="text" id="title" />
+
+                <label for="desc">Description</label>
+                <textarea id="desc"></textarea>
+
+                <label for="priority">Priority</label>
+                <select id="priority">
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                </select>
+
+                <label for="date">Date</label>
+                <input type="date" id="date" />
+
+                <label for="time">Time</label>
+                <input type="time" id="time" />
+
+                <div class="milestone-section">
+                    <h3>Add Milestone</h3>
+                    <input type="text" id="milestoneInput" placeholder="Milestone description" />
+                    <button id="addMilestoneBtn" type="button">Add Milestone</button>
+
+                    <h3>Milestones</h3>
+                    <ul id="milestoneList">
+                        <!-- Milestones will appear here -->
+                    </ul>
+
+                    <div class="progress-container" style="width:100%; background:#eee; border-radius:6px; margin: 1em 0;">
+                        <div id="progressBar" class="progress-bar" style="width: 0%; height: 20px; background: green; border-radius:6px;"></div>
+                    </div>
+                    <span id="progressText">0 / 0 milestones completed</span>
+                </div>
+                <button id="submitButton" class="submit-btn">Add Activity</button>
+            </form>
+        </div>`;
+
+    function renderAllTasksComponent() {
+        var root = document.getElementById("root");
+        fetch("activities.json")
+            .then(function (res) {
+                return res.json();
+            })
+            .then(function (activities) {
+                var html = '<div class="mainContainerOfTasks">';
+                activities.map(function (activity) {
+                    var milestoneList = '';
+                    if (activity.milestones) {
+                        milestoneList = '<ul class="milestoneList">' +
+                            activity.milestones.map(function (m) {
+                                return '<li>' + m.desc + '</li>';
+                            }).join('') +
+                            '</ul>';
+                    } else {
+                        milestoneList = '<span>No milestones</span>';
+                    }
+
+                    html += '<div class="containerOfTasks">' +
+                        '<div class="leftDisplay">' +
+                        '<h1><i class="fa ' + activity.icon + '" style="margin-right:8px"></i>' + activity.name + '</h1>' +
+                        '<p>' + activity.description + '</p>' +
+                        '<div><strong>Date:</strong> ' + activity.date + ' &nbsp; <strong>Time:</strong> ' + activity.time + '</div>' +
+                        '<div>' + milestoneList + '</div>' +
+                        '</div>' +
+                        '<img src="' + activity.image + '" alt="">' +
+                        '</div>';
+                });
+                html += '</div>';
+                root.innerHTML = html;
+            });
+    }
+
+    (function () {
+        var root = document.getElementById("root");
+        root.innerHTML = formComponent;
+        document.getElementById("new_task").onclick = function () {
+            root.innerHTML = formComponent;
+        };
+        document.getElementById("all_task").onclick = function () {
+            renderAllTasksComponent();
+        };
+        document.querySelector('.theme-toggle').onclick = function () {
+            document.body.classList.toggle('dark');
+        };
+
+        document.addEventListener('click', function (e) {
+            if (e.target && e.target.id === "submitButton") {
+                e.preventDefault();
+                document.getElementById("toast").style.display = "block";
+                setTimeout(function () {
+                    document.getElementById("toast").style.display = "none";
+                }, 2000);
+            }
+        });
+    })();
+    </script>
+
+</body>
 </html>

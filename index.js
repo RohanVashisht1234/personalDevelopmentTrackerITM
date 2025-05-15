@@ -18,9 +18,7 @@ response.then((value) => value.json()).then((data) => {
             }
 
             const image = document.createElement("img");
-            {
-                image.setAttribute("src", `images/${element.image}`);
-            }
+            image.setAttribute("src", `images/${element.image}`);
             if (idx % 2 == 0) {
                 div.appendChild(childDiv);
                 div.appendChild(image);

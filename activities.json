@@ -1,0 +1,43 @@
+[
+    {
+        "name": "Soft Skills",
+        "image": "images/image1.png",
+        "description": "We learnt valuable soft skills from Pratishtha Shyam Ma'am. She guided us in improving our communication abilities, especially how to speak effectively with people and deliver impactful speeches. These lessons played a key role in boosting our confidence and gave us a solid head start in the early days of our college life.",
+        "icon": "fa-microphone",
+        "date": "2025-05-15",
+        "time": "10:00 AM",
+        "milestones": [
+            { "desc": "Attend introductory session", "completed": false },
+            { "desc": "Practice a speech in class", "completed": false },
+            { "desc": "Receive peer feedback", "completed": false }
+        ]
+    },
+    {
+        "name": "Python Programming Language",
+        "image": "images/image2.png",
+        "description": "Python, known for its simplicity and power, was introduced to us by Ritu Ma'am. She patiently taught us the fundamentals of programming using Python, helping us understand core concepts such as variables, loops, functions, and object-oriented programming. Her teaching made our journey into the world of coding smooth and enjoyable.",
+        "icon": "fa-code",
+        "date": "2025-05-15",
+        "time": "11:30 AM",
+        "milestones": [
+            { "desc": "Install Python and set up IDE", "completed": false },
+            { "desc": "Write first Python program", "completed": false },
+            { "desc": "Understand loops and functions", "completed": false },
+            { "desc": "Complete OOP mini project", "completed": false }
+        ]
+    },
+    {
+        "name": "C++ Programming Language",
+        "image": "images/image2.png",
+        "description": "C++ is a powerful and essential programming language that was taught to us by Ashish Sir. His detailed and structured approach made it easier to grasp complex topics like pointers, classes, inheritance, and memory management. The strong foundation in C++ we gained from his sessions will benefit us throughout our programming careers.",
+        "icon": "fa-code",
+        "date": "2025-05-15",
+        "time": "01:00 PM",
+        "milestones": [
+            { "desc": "Set up C++ development environment", "completed": false },
+            { "desc": "Learn pointers and memory management", "completed": false },
+            { "desc": "Understand classes and inheritance", "completed": false },
+            { "desc": "Finish C++ practice assignment", "completed": false }
+        ]
+    }
+]
