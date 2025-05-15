@@ -22,15 +22,14 @@
         <aside class="sidebar">
             <button id="new_task" class="sidebar-btn"><i class="fa fa-plus"></i> New activities</button>
             <button id="all_task" class="sidebar-btn"><i class="fa fa-list"></i> All activities</button>
-            <button class="sidebar-btn"><i class="fa fa-cog"></i> Settings</button>
         </aside>
         <main id="root" class="main"></main>
     </div>
 
     <div id="toast">Task Added!</div>
     <script>
-    var formComponent =
-        `<div class="tracker-form-container">
+        var formComponent =
+            `<div class="tracker-form-container">
             <h2>Insert New Activity</h2>
             <form class="tracker-form">
                 <label for="title">Title</label>
@@ -71,65 +70,66 @@
             </form>
         </div>`;
 
-    function renderAllTasksComponent() {
-        var root = document.getElementById("root");
-        fetch("activities.json")
-            .then(function (res) {
-                return res.json();
-            })
-            .then(function (activities) {
-                var html = '<div class="mainContainerOfTasks">';
-                activities.map(function (activity) {
-                    var milestoneList = '';
-                    if (activity.milestones) {
-                        milestoneList = '<ul class="milestoneList">' +
-                            activity.milestones.map(function (m) {
-                                return '<li>' + m.desc + '</li>';
-                            }).join('') +
-                            '</ul>';
-                    } else {
-                        milestoneList = '<span>No milestones</span>';
-                    }
+        function renderAllTasksComponent() {
+            var root = document.getElementById("root");
+            fetch("activities.json")
+                .then(function (res) {
+                    return res.json();
+                })
+                .then(function (activities) {
+                    var html = '<div class="mainContainerOfTasks">';
+                    activities.map(function (activity) {
+                        var milestoneList = '';
+                        if (activity.milestones) {
+                            milestoneList = '<ul class="milestoneList">' +
+                                activity.milestones.map(function (m) {
+                                    return '<li>' + m.desc + '</li>';
+                                }).join('') +
+                                '</ul>';
+                        } else {
+                            milestoneList = '<span>No milestones</span>';
+                        }
 
-                    html += '<div class="containerOfTasks">' +
-                        '<div class="leftDisplay">' +
-                        '<h1><i class="fa ' + activity.icon + '" style="margin-right:8px"></i>' + activity.name + '</h1>' +
-                        '<p>' + activity.description + '</p>' +
-                        '<div><strong>Date:</strong> ' + activity.date + ' &nbsp; <strong>Time:</strong> ' + activity.time + '</div>' +
-                        '<div>' + milestoneList + '</div>' +
-                        '</div>' +
-                        '<img src="' + activity.image + '" alt="">' +
-                        '</div>';
+                        html += '<div class="containerOfTasks">' +
+                            '<div class="leftDisplay">' +
+                            '<h1><i class="fa ' + activity.icon + '" style="margin-right:8px"></i>' + activity.name + '</h1>' +
+                            '<p>' + activity.description + '</p>' +
+                            '<div><strong>Date:</strong> ' + activity.date + ' &nbsp; <strong>Time:</strong> ' + activity.time + '</div>' +
+                            '<div>' + milestoneList + '</div>' +
+                            '</div>' +
+                            '<img src="' + activity.image + '" alt="">' +
+                            '</div>';
+                    });
+                    html += '</div>';
+                    root.innerHTML = html;
                 });
-                html += '</div>';
-                root.innerHTML = html;
-            });
-    }
+        }
 
-    (function () {
-        var root = document.getElementById("root");
-        root.innerHTML = formComponent;
-        document.getElementById("new_task").onclick = function () {
+        (function () {
+            var root = document.getElementById("root");
             root.innerHTML = formComponent;
-        };
-        document.getElementById("all_task").onclick = function () {
-            renderAllTasksComponent();
-        };
-        document.querySelector('.theme-toggle').onclick = function () {
-            document.body.classList.toggle('dark');
-        };
+            document.getElementById("new_task").onclick = function () {
+                root.innerHTML = formComponent;
+            };
+            document.getElementById("all_task").onclick = function () {
+                renderAllTasksComponent();
+            };
+            document.querySelector('.theme-toggle').onclick = function () {
+                document.body.classList.toggle('dark');
+            };
 
-        document.addEventListener('click', function (e) {
-            if (e.target && e.target.id === "submitButton") {
-                e.preventDefault();
-                document.getElementById("toast").style.display = "block";
-                setTimeout(function () {
-                    document.getElementById("toast").style.display = "none";
-                }, 2000);
-            }
-        });
-    })();
+            document.addEventListener('click', function (e) {
+                if (e.target && e.target.id === "submitButton") {
+                    e.preventDefault();
+                    document.getElementById("toast").style.display = "block";
+                    setTimeout(function () {
+                        document.getElementById("toast").style.display = "none";
+                    }, 2000);
+                }
+            });
+        })();
     </script>
 
 </body>
+
 </html>

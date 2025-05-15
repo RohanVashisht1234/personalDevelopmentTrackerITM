@@ -119,7 +119,7 @@ body.dark .tracker-form-container {
     color: var(--text-dark);
 }
 
-body.dark .tracker-form-container  * {
+body.dark .tracker-form-container * {
     color: var(--text-dark) !important;
 }
 
