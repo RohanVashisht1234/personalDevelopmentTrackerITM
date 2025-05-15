@@ -110,13 +110,22 @@ main {
     padding: 24px;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 0 12px 0 rgba(0,0,0,0.04);
+    box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.04);
     transition: background 0.3s;
 }
 
 body.dark .tracker-form-container {
     background: #23234b;
     color: var(--text-dark);
+}
+
+body.dark .tracker-form-container  * {
+    color: var(--text-dark) !important;
+}
+
+body.dark .tracker-form-container button {
+    color: var(--text-dark) !important;
+    background-color: var(--primaryDark);
 }
 
 body.dark textarea,
@@ -191,6 +200,11 @@ body.dark select {
     pointer-events: all;
 }
 
+.containerOfTasks>img {
+    width: 300px;
+    border-radius: 10px;
+}
+
 @media (max-width: 768px) {
     .main-layout {
         flex-direction: column;
@@ -209,7 +223,7 @@ body.dark select {
         padding: 10px 0;
     }
 
-    .containerOfTasks > img {
+    .containerOfTasks>img {
         width: 160px;
     }
 }
@@ -227,7 +241,7 @@ body.dark select {
     background-color: #fff;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 0 12px 0 rgba(0,0,0,0.04);
+    box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.04);
     transition: background 0.3s;
     color: var(--text-light);
 }
